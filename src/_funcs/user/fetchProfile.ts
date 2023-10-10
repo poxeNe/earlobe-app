@@ -1,4 +1,4 @@
-import { UserProfile } from "../../App.tsx";
+import { UserProfile } from "../../root.tsx";
 
 export const fetchProfile = async (): Promise<UserProfile> => {
   const accessToken = localStorage.getItem("access_token");
