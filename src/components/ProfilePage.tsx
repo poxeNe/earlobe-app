@@ -1,22 +1,42 @@
-import { FC } from "react";
-import { UserProfile } from "../root.tsx";
+import { fetchProfile } from "../_funcs/user/fetchProfile.ts";
+import { UserProfile } from "../types/userProfile.ts";
+import { Header } from "./Header.tsx";
+import styled from "@emotion/styled";
 
-type Props = {
-  profile?: UserProfile;
-};
+const profile: UserProfile = await fetchProfile();
 
-export const ProfilePage: FC<Props> = (props) => {
+export const ProfilePage = () => {
   return (
     <>
-      <h1>Profile page.</h1>
+      <Header userId={profile.id} />
 
-      {props.profile ? (
-        <div>{props.profile.id}</div>
-      ) : (
-        <div>
-          <p>No profile found.</p>
-        </div>
-      )}
+      <Container>
+        <h1>Profile page.</h1>
+
+        {profile ? (
+          <ProfileData>
+            <p>ID: {profile.id}</p>
+            <p>Email: {profile.email}</p>
+          </ProfileData>
+        ) : (
+          <div>
+            <p>No profile found.</p>
+          </div>
+        )}
+      </Container>
     </>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 30px;
+`;
+
+const ProfileData = styled.div`
+  display: block;
+`;

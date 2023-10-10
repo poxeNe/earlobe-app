@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   display: flex;
-  color: var(--main-green);
+  color: var(--primary);
   font-family: "Palanquin Dark", sans-serif;
   //letter-spacing: 1px;
   font-size: 40px;

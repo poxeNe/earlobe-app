@@ -4,7 +4,12 @@
   font-weight: 400;
 
   /* colors */
-  --main-green: #81ef25;
+  --primary: #16a8a8;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
 }
 
 body {
