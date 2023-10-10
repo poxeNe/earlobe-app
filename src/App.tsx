@@ -2,7 +2,8 @@ import { getAccessToken } from "./_funcs/user/getAccessToken.ts";
 import { fetchProfile } from "./_funcs/user/fetchProfile.ts";
 import { redirectToAuthCodeFlow } from "./_funcs/auth/redirectToAuthCodeFlow.ts";
 
-import "./App.css"; // styles
+import "./App.css";
+import { Header } from "./components/Header.tsx"; // styles
 
 export type UserProfile = {
   country: string;
@@ -32,16 +33,29 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
-if (!code) {
+if (!code && !localStorage.getItem("access_token")) {
   redirectToAuthCodeFlow(clientId);
 }
 
-const accessToken = await getAccessToken(clientId, code!);
-const profile: UserProfile = await fetchProfile(accessToken);
+if (!localStorage.getItem("access_token")) {
+  getAccessToken(clientId, code!);
+}
 
-function App() {
+const profile: UserProfile = await fetchProfile();
+
+const renderProfile = (profile: UserProfile) => {
+  if (!profile) {
+    return (
+      <>
+        <div>Test</div>
+      </>
+    );
+  }
+
   return (
     <>
+      <Header userId={profile.id} />
+
       <h1>Display your Spotify profile data</h1>
 
       <section id="profile">
@@ -51,7 +65,7 @@ function App() {
         <span id="avatar"></span>
         <ul>
           <li>
-            User ID: <span id="id">{profile.id}</span>
+            User ID: <span id="id"> {profile.id} </span>
           </li>
           <li>
             Email: <span id="email">{profile.email}</span>
@@ -75,6 +89,10 @@ function App() {
       </section>
     </>
   );
+};
+
+function App() {
+  return <>Landing page</>;
 }
 
 export default App;
