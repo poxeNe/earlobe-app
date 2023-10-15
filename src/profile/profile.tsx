@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ProfilePage } from "../components/ProfilePage";
+// import { ProfilePage } from "../components/ProfilePage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ProfilePage />
-  </React.StrictMode>
+  <React.StrictMode>{/*<ProfilePage />*/}</React.StrictMode>
 );

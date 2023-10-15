@@ -5,7 +5,7 @@ export const getAccessToken = async (clientId: string, code: string) => {
   body.append("client_id", clientId);
   body.append("grant_type", "authorization_code");
   body.append("code", code);
-  body.append("redirect_uri", "http://localhost:5173/profile");
+  body.append("redirect_uri", "http://localhost:5173/");
   body.append("code_verifier", verifier!);
 
   const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -24,7 +24,12 @@ export const getAccessToken = async (clientId: string, code: string) => {
     })
     .then((data) => {
       const { access_token } = data;
-      localStorage.setItem("access_token", access_token);
+      const accessTokenObj = {
+        access_token,
+        createdAt: Date.now(),
+      };
+
+      localStorage.setItem("accessTokenObj", JSON.stringify(accessTokenObj));
     })
     .catch((error) => {
       console.log("Error: ", error);

@@ -1,92 +1,42 @@
-import "./Root.css";
-import styled from "@emotion/styled";
 import { Button } from "../components/Button.tsx";
 import { handleLogin } from "../_funcs/auth/handleLogin.ts";
 import { getAccessToken } from "../_funcs/user/getAccessToken.ts";
-import { useNavigate } from "react-router-dom";
+import { ProfilePage } from "../components/ProfilePage.tsx";
+import { fetchProfile, ProfileResult } from "../_funcs/user/fetchProfile.ts";
+import styled from "@emotion/styled";
+import "./Root.css";
+
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
-// const profile: UserProfile = await fetchProfile();
-//
-// const renderProfile = (profile: UserProfile) => {
-//   if (!profile) {
-//     return (
-//       <>
-//         <div>Test</div>
-//       </>
-//     );
-//   }
-//
-//   return (
-//     <>
-//       <Header userId={profile.id} />
-//
-//       <h1>Display your Spotify profile data</h1>
-//
-//       <section id="profile">
-//         <h2>
-//           Logged in as <span id="displayName">{profile.display_name}</span>
-//         </h2>
-//         <span id="avatar"></span>
-//         <ul>
-//           <li>
-//             User ID: <span id="id"> {profile.id} </span>
-//           </li>
-//           <li>
-//             Email: <span id="email">{profile.email}</span>
-//           </li>
-//           <li>
-//             Spotify URI:{" "}
-//             <a id="uri" href="#">
-//               {profile.uri}
-//             </a>
-//           </li>
-//           <li>
-//             Link:{" "}
-//             <a id="url" href="#">
-//               {profile.href}
-//             </a>
-//           </li>
-//           <li>
-//             Profile Image: <span id="imgUrl"></span>
-//           </li>
-//         </ul>
-//       </section>
-//     </>
-//   );
-// };
-
 if (code) {
-  await getAccessToken(clientId, code!);
+  await getAccessToken(clientId, code);
 }
 
+const profileReq: ProfileResult = await fetchProfile();
+
 function Root() {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (localStorage.getItem("access_token")) {
-      navigate("/profile");
-    }
-
-    handleLogin();
+  const handleClick = async () => {
+    await handleLogin();
   };
 
-  if (localStorage.getItem("access_token")) {
-    navigate("/profile");
+  if (!profileReq.success) {
+    return (
+      <Container>
+        <TitleWrapper>
+          <h1>Spotifyte</h1>
+          <p>Level up your taste in music.</p>
+        </TitleWrapper>
+
+        <Button text={"Login"} onClick={() => handleClick()} />
+      </Container>
+    );
   }
 
-  return (
-    <Container>
-      <TitleWrapper>
-        <h1>Spotifyte</h1>
-        <p>Level up your taste in music.</p>
-      </TitleWrapper>
-
-      <Button text={"Login"} onClick={() => handleClick()} />
-    </Container>
-  );
+  if (localStorage.getItem("accessTokenObj")) {
+    return <ProfilePage profile={profileReq.profile} />;
+  }
 }
 
 export default Root;

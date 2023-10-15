@@ -1,12 +1,49 @@
 import { UserProfile } from "../../types/userProfile.ts";
+import differenceInHours from "date-fns/differenceInHours";
 
-export const fetchProfile = async (): Promise<UserProfile> => {
-  const accessToken = localStorage.getItem("access_token");
+export type ProfileResult =
+  | {
+      success: true;
+      profile: UserProfile;
+    }
+  | {
+      success: false;
+    };
+
+export const fetchProfile = async (): Promise<ProfileResult> => {
+  if (!localStorage.getItem("accessTokenObj")) {
+    return {
+      success: false,
+    };
+  }
+
+  const accessTokenObj = JSON.parse(localStorage.getItem("accessTokenObj")!);
+
+  if (differenceInHours(accessTokenObj.createdAt, Date.now()) >= 1) {
+    localStorage.removeItem("accessTokenObj");
+
+    return {
+      success: false,
+    };
+  }
 
   const result = await fetch("https://api.spotify.com/v1/me", {
     method: "GET",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: {
+      Authorization: `Bearer ${accessTokenObj.access_token}`,
+    },
   });
 
-  return await result.json();
+  if (!result.ok) {
+    localStorage.removeItem("accessTokenObj");
+
+    return {
+      success: false,
+    };
+  }
+
+  return {
+    success: true,
+    profile: (await result.json()) as UserProfile,
+  };
 };

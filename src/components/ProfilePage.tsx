@@ -1,23 +1,29 @@
-import { fetchProfile } from "../_funcs/user/fetchProfile.ts";
-import { UserProfile } from "../types/userProfile.ts";
 import { Header } from "./Header.tsx";
+import { FC } from "react";
+import { UserProfile } from "../types/userProfile.ts";
 import styled from "@emotion/styled";
 
-const profile: UserProfile = await fetchProfile();
+type Props = {
+  profile: UserProfile;
+};
 
-export const ProfilePage = () => {
+export const ProfilePage: FC<Props> = (props) => {
   return (
     <>
-      <Header userId={profile.id} />
+      <Header userId={props.profile.id} />
 
       <Container>
         <h1>Profile page.</h1>
 
-        {profile ? (
-          <ProfileData>
-            <p>ID: {profile.id}</p>
-            <p>Email: {profile.email}</p>
-          </ProfileData>
+        {props ? (
+          <>
+            <ProfileData>
+              <p>ID: {props.profile.id}</p>
+              <p>Email: {props.profile.email}</p>
+            </ProfileData>
+
+            {/*<div>{props}</div>*/}
+          </>
         ) : (
           <div>
             <p>No profile found.</p>
