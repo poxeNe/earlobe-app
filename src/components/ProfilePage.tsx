@@ -1,10 +1,10 @@
 import { Header } from "./Header.tsx";
 import { FC } from "react";
-import { UserProfile } from "../types/userProfile.ts";
+import { Types } from "../types/types.ts";
 import styled from "@emotion/styled";
 
 type Props = {
-  profile: UserProfile;
+  profile: Types;
 };
 
 export const ProfilePage: FC<Props> = (props) => {
@@ -37,7 +37,7 @@ export const ProfilePage: FC<Props> = (props) => {
 const Container = styled.div`
   display: flex;
   //justify-content: center;
-  align-items: center;
+  //align-items: center;
   flex-direction: column;
   height: 100vh;
   padding: 30px;

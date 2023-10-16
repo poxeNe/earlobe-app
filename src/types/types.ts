@@ -1,4 +1,4 @@
-export type UserProfile = {
+export type Types = {
   country: string;
   display_name: string;
   email: string;
