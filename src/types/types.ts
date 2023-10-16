@@ -1,4 +1,4 @@
-export type Types = {
+export type UserProfile = {
   country: string;
   display_name: string;
   email: string;
@@ -51,11 +51,12 @@ export type CurrentlyPlaying = {
     timestamp: number;
     progress_ms: number;
     is_playing: boolean;
-    item: TrackObject | EpisodeObject;
   };
+
+  item: Track | Episode;
 };
 
-export type TrackObject = {
+export type Track = {
   album: {
     album_type: string; // album | single | compilation
     total_tracks: number;
@@ -78,10 +79,10 @@ export type TrackObject = {
 
     type: string;
     uri: string;
-    artists: SimplifiedArtistObject[];
+    artists: SimplifiedArtist[];
   };
 
-  artists: ArtistObject[];
+  artists: Artist[];
   available_markets: string[];
   disc_number: number;
   duration_ms: number;
@@ -115,7 +116,7 @@ export type TrackObject = {
   is_local: boolean;
 };
 
-export type ArtistObject = {
+export type Artist = {
   external_urls: {
     spotify: string;
   };
@@ -135,7 +136,7 @@ export type ArtistObject = {
   uri: string;
 };
 
-export type SimplifiedArtistObject = {
+export type SimplifiedArtist = {
   external_urls: {
     spotify: string;
   };
@@ -147,7 +148,7 @@ export type SimplifiedArtistObject = {
   uri: string;
 };
 
-export type EpisodeObject = {
+export type Episode = {
   audio_preview_url: string | null;
   description: string;
   html_description: string;
@@ -182,7 +183,7 @@ export type EpisodeObject = {
 
   show: {
     available_markets: string[];
-    copyrights: CopyrightObject[];
+    copyrights: Copyright[];
     description: string;
     html_description: string;
     explicit: boolean;
@@ -218,7 +219,7 @@ export type EpisodeObject = {
   };
 };
 
-export type CopyrightObject = {
+export type Copyright = {
   text: string;
   type: string;
 };

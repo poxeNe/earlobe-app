@@ -1,11 +1,22 @@
 import { Header } from "./Header.tsx";
 import { FC } from "react";
-import { Types } from "../types/types.ts";
+import { CurrentlyPlaying, UserProfile } from "../types/types.ts";
+import { CurrentlyPlayingCard } from "./CurrentlyPlayingCard.tsx";
+import { fetchCurrentlyPlaying } from "../_funcs/user/fetchCurrentlyPlaying.ts";
 import styled from "@emotion/styled";
 
 type Props = {
-  profile: Types;
+  profile: UserProfile;
+  currentlyPlaying?: CurrentlyPlaying;
 };
+
+const currentlyPlayingReq = await fetchCurrentlyPlaying();
+
+if (!currentlyPlayingReq.success) {
+  throw new Error("Can't find any currently playing songs.");
+}
+
+const currentlyPlaying = currentlyPlayingReq.currentlyPlaying;
 
 export const ProfilePage: FC<Props> = (props) => {
   return (
@@ -22,7 +33,13 @@ export const ProfilePage: FC<Props> = (props) => {
               <p>Email: {props.profile.email}</p>
             </ProfileData>
 
-            {/*<div>{props}</div>*/}
+            {currentlyPlaying ? (
+              <CurrentlyPlayingCard
+                currentlyPlaying={currentlyPlayingReq.currentlyPlaying}
+              />
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <div>

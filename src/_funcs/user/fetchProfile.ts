@@ -1,10 +1,10 @@
-import { Types } from "../../types/types.ts";
+import { UserProfile } from "../../types/types.ts";
 import differenceInHours from "date-fns/differenceInHours";
 
 export type ProfileResult =
   | {
       success: true;
-      profile: Types;
+      profile: UserProfile;
     }
   | {
       success: false;
@@ -44,6 +44,6 @@ export const fetchProfile = async (): Promise<ProfileResult> => {
 
   return {
     success: true,
-    profile: (await result.json()) as Types,
+    profile: (await result.json()) as UserProfile,
   };
 };
