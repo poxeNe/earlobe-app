@@ -12,33 +12,27 @@ type Props = {
 
 const currentlyPlayingReq = await fetchCurrentlyPlaying();
 
-if (!currentlyPlayingReq.success) {
-  throw new Error("Can't find any currently playing songs.");
-}
-
-const currentlyPlaying = currentlyPlayingReq.currentlyPlaying;
-
 export const ProfilePage: FC<Props> = (props) => {
   return (
     <>
       <Header userId={props.profile.id} />
 
       <Container>
-        <h1>Profile page.</h1>
+        <h3>Profile:</h3>
 
-        {props ? (
+        {props.profile ? (
           <>
-            <ProfileData>
+            <ProfileDataWrapper>
               <p>ID: {props.profile.id}</p>
               <p>Email: {props.profile.email}</p>
-            </ProfileData>
+            </ProfileDataWrapper>
 
-            {currentlyPlaying ? (
+            {currentlyPlayingReq.success ? (
               <CurrentlyPlayingCard
                 currentlyPlaying={currentlyPlayingReq.currentlyPlaying}
               />
             ) : (
-              <></>
+              <div>No song is currently playing.</div>
             )}
           </>
         ) : (
@@ -56,10 +50,16 @@ const Container = styled.div`
   //justify-content: center;
   //align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100% - 70px);
+  overflow: auto;
   padding: 30px;
 `;
 
-const ProfileData = styled.div`
-  display: block;
+const ProfileDataWrapper = styled.div`
+  display: flex;
+  margin: 0 0 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #000;
+  border-radius: 5px;
 `;

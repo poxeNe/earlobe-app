@@ -42,8 +42,16 @@ export const fetchProfile = async (): Promise<ProfileResult> => {
     };
   }
 
+  if (result.status === 204) {
+    return {
+      success: false,
+    };
+  }
+
+  const profile = (await result.json()) as UserProfile;
+
   return {
     success: true,
-    profile: (await result.json()) as UserProfile,
+    profile,
   };
 };
