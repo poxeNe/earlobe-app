@@ -7,20 +7,28 @@ type Props = {
 
 export const Header: FC<Props> = (props) => {
   return (
-    <Container>
-      <Title>Spotifyte</Title>
-      {`Logged in as ${props.userId}`}
-    </Container>
+    <HeaderWrapper>
+      <Container>
+        <Title>Spotifyte</Title>
+        {`Logged in as ${props.userId}`}
+      </Container>
+    </HeaderWrapper>
   );
 };
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 800px;
   height: 70px;
-  padding: 0 50px;
-  border-bottom: 1px solid #ddd;
+  padding: 0 100px;
+  border-bottom: 1px solid rgba(230, 230, 230, 70%);
 `;
 
 const Title = styled.div`
