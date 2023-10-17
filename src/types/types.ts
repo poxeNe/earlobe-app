@@ -53,7 +53,7 @@ export type CurrentlyPlaying = {
     is_playing: boolean;
   };
 
-  item: Track | Episode;
+  item: Track;
 };
 
 export type Track = {

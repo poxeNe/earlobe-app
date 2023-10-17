@@ -5,7 +5,6 @@ import { ProfilePage } from "../components/ProfilePage.tsx";
 import { fetchProfile, ProfileResult } from "../_funcs/user/fetchProfile.ts";
 import styled from "@emotion/styled";
 import "./Root.css";
-
 const clientId = import.meta.env.VITE_CLIENT_ID;
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
@@ -21,7 +20,7 @@ function Root() {
     await handleLogin();
   };
 
-  if (!profileReq.success) {
+  const renderLanding = () => {
     return (
       <Container>
         <TitleWrapper>
@@ -32,11 +31,28 @@ function Root() {
         <Button text={"Login"} onClick={() => handleClick()} />
       </Container>
     );
-  }
+  };
 
-  if (localStorage.getItem("accessTokenObj")) {
-    return <ProfilePage profile={profileReq.profile} />;
-  }
+  return (
+    <>
+      {!profileReq.success ? (
+        renderLanding()
+      ) : (
+        <ProfilePage profile={profileReq.profile} />
+      )}
+    </>
+  );
+  // <>
+  //   {profileReq.success && localStorage.getItem("accessTokenObj") ? (
+  //     <ProfilePage profile={profileReq.profile} />
+  //   ) : (
+  //     renderLanding()
+  //   )}
+  // </>
+
+  // if (localStorage.getItem("accessTokenObj")) {
+  //   return;
+  // }
 }
 
 export default Root;

@@ -10,10 +10,11 @@ export const Container: FC<Props> = (props) => {
 };
 
 const StyledDiv = styled.div`
-  display: flex;
+  //display: flex;
   //justify-content: center;
   //align-items: center;
-  flex-direction: column;
-  height: 100vh;
+  //flex-direction: column;
+  height: calc(100% - 70px);
+  overflow: auto;
   padding: 30px;
 `;
