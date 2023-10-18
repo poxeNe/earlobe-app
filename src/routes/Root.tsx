@@ -29,7 +29,16 @@ function Root() {
           <p>Level up your taste in music.</p>
         </TitleWrapper>
 
-        <Button text={"Login"} onClick={() => handleClick()} />
+        <Button
+          text={"Login with Spotify"}
+          img={{
+            src: "/spotify.svg",
+            alt: "Spotify Logo",
+            width: 25,
+            height: 25,
+          }}
+          onClick={() => handleClick()}
+        />
       </Container>
     );
   };
@@ -65,15 +74,20 @@ const TitleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: Red Hat Display, sans-serif;
 
   h1 {
     font-size: 69px;
-    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    //color: var(--primary);
+    color: white;
     //text-shadow: 0px 0px 5px #666;
   }
 
   p {
     font-size: 21px;
-    font-family: "Palanquin Dark", sans-serif;
+    letter-spacing: 2px;
+    //font-family: Red Hat Display, sans-serif;
   }
 `;
