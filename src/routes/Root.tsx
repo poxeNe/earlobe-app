@@ -99,7 +99,7 @@ const TitleWrapper = styled.div`
 
   h1 {
     font-size: 69px;
-    font-weight: 100;
+    font-weight: 700;
     letter-spacing: 2px;
     //color: var(--primary);
     color: white;
