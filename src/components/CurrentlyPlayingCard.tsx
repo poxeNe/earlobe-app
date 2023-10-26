@@ -106,7 +106,7 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 0 10px;
 
   .title {
     font-size: 20px;
@@ -135,8 +135,9 @@ const ArtistImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0;
   margin: 0 15px 0 0;
-  border: 1px solid white;
+  border: 2px solid var(--main-copy);
   border-radius: 3px;
 `;
 

@@ -13,9 +13,9 @@ export const UserCard: FC<Props> = (props) => {
         <h3>user</h3>
       </div>
 
-      <Card>
+      <Body>
         {props.profile ? (
-          <>
+          <BodyCard>
             <ProfileDataWrapper>
               <p>username:</p>
               <p>spotify id: {props.profile.id}</p>
@@ -25,13 +25,13 @@ export const UserCard: FC<Props> = (props) => {
               <p>lorem: ipsum</p>
               <p>lorem: ipsum</p>
             </ProfileDataWrapper>
-          </>
+          </BodyCard>
         ) : (
           <div>
             <p>no profile found.</p>
           </div>
         )}
-      </Card>
+      </Body>
     </Wrapper>
   );
 };
@@ -53,12 +53,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const Card = styled.div`
+const Body = styled.div`
   display: flex;
+  padding: 0 10px;
+`;
+
+const BodyCard = styled.div`
+  display: flex;
+  width: 100%;
   padding: 10px;
-  background-color: #000;
-  border: 1px solid #ddd;
+  background-color: #080808;
+  border: 1px solid #888;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px #000;
 `;
 
 const ProfileDataWrapper = styled.div`

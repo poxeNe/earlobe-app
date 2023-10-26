@@ -11,7 +11,9 @@ export type RecentlyPlayedResult =
       success: false;
     };
 
-export const fetchRecentlyPlayed = async (): Promise<RecentlyPlayedResult> => {
+export const fetchRecentlyPlayed = async (
+  limit?: number
+): Promise<RecentlyPlayedResult> => {
   if (!localStorage.getItem("accessTokenObj")) {
     return {
       success: false,
@@ -29,7 +31,9 @@ export const fetchRecentlyPlayed = async (): Promise<RecentlyPlayedResult> => {
   }
 
   const result = await fetch(
-    "https://api.spotify.com/v1/me/player/recently-played",
+    `https://api.spotify.com/v1/me/player/recently-played?limit=${
+      limit ? limit : 20
+    }`,
     {
       method: "GET",
       headers: {

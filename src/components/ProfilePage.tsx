@@ -1,9 +1,10 @@
-import { Header } from "./Header.tsx";
 import { FC } from "react";
 import { UserProfile } from "../types/types.ts";
+import { Header } from "./Header.tsx";
 import { UserCard } from "./UserCard.tsx";
 import { CurrentlyPlayingCard } from "./CurrentlyPlayingCard.tsx";
 import { RecentlyPlayedCard } from "./RecentlyPlayedCard.tsx";
+import { Footer } from "./Footer.tsx";
 import styled from "@emotion/styled";
 
 type Props = {
@@ -25,6 +26,8 @@ export const ProfilePage: FC<Props> = (props) => {
           <RecentlyPlayedCard />
         </div>
       </BodyWrapper>
+
+      <Footer />
     </>
   );
 };

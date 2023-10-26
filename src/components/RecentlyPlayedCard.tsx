@@ -10,7 +10,7 @@ type Props = {
   // currentlyPlaying: CurrentlyPlaying;
 };
 
-const recentlyPlayedReq: RecentlyPlayedResult = await fetchRecentlyPlayed();
+const recentlyPlayedReq: RecentlyPlayedResult = await fetchRecentlyPlayed(10);
 
 export const RecentlyPlayedCard: FC<Props> = () => {
   if (!recentlyPlayedReq.success) {
@@ -33,13 +33,13 @@ export const RecentlyPlayedCard: FC<Props> = () => {
           <h3>recently played</h3>
         </div>
 
-        <Card>
+        <BodyWrapper>
           {recentlyPlayedReq.recentlyPlayed.items.length > 0 ? (
             <Body>
               {recentlyPlayedReq.recentlyPlayed.items.map(
-                (item: PlayHistory) => {
+                (item: PlayHistory, i) => {
                   return (
-                    <BodyCard>
+                    <BodyCard className={`bodyCard${i}`}>
                       <div className="title">
                         <p>{item.track.name}</p>
                       </div>
@@ -68,7 +68,7 @@ export const RecentlyPlayedCard: FC<Props> = () => {
           ) : (
             <div>no recently played songs found.</div>
           )}
-        </Card>
+        </BodyWrapper>
       </Wrapper>
     );
   }
@@ -91,11 +91,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const Card = styled.div`
+const BodyWrapper = styled.div`
   display: flex;
-  padding: 5px;
-  //background-color: black;
-  //border: 1px solid #ddd;
+  padding: 0 10px;
   border-radius: 5px;
 `;
 
@@ -114,16 +112,53 @@ const Body = styled.div`
     background-color: #012118;
     border: 1px solid #0f8c5f;
   }
+
+  .bodyCard1 {
+    opacity: 100%;
+  }
+
+  .bodyCard2 {
+    opacity: 90%;
+  }
+
+  .bodyCard3 {
+    opacity: 80%;
+  }
+
+  .bodyCard4 {
+    opacity: 70%;
+  }
+
+  .bodyCard5 {
+    opacity: 60%;
+  }
+
+  .bodyCard6 {
+    opacity: 50%;
+  }
+
+  .bodyCard7 {
+    opacity: 40%;
+  }
+
+  .bodyCard8 {
+    opacity: 30%;
+  }
+
+  .bodyCard9 {
+    opacity: 20%;
+  }
+
+  .bodyCard10 {
+    opacity: 10%;
+  }
 `;
 
 const BodyCard = styled.div`
   display: flex;
   border-radius: 5px;
-  padding: 8px;
+  padding: 8px 12px;
   box-shadow: 1px 1px 3px #000;
-
-  > div {
-  }
 
   .title {
     //font-size: 20px;

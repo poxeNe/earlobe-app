@@ -11,10 +11,10 @@ export const Header: FC<Props> = (props) => {
       <BodyWrapper>
         <TitleWrapper>
           <div className="heading">
-            <h1 className="primaryColor">ear</h1>
-            <h1 className="accentColor">lo</h1>
-            <h1 className="primaryColor">.</h1>
-            <h1 className="accentColor">be</h1>
+            <h2 className="primaryColor">ear</h2>
+            <h2 className="accentColor">lo</h2>
+            <h2 className="primaryColor">.</h2>
+            <h2 className="accentColor">be</h2>
           </div>
         </TitleWrapper>
 
@@ -50,15 +50,16 @@ const BodyWrapper = styled.div`
 
   .loggedIn {
     display: flex;
+    letter-spacing: 1px;
 
     img {
       position: relative;
-      top: 3px;
+      top: 2px;
     }
 
     p {
       font-weight: 200;
-      margin: 0 0 0 5px;
+      margin: 0 0 0 7px;
     }
   }
 `;
@@ -75,6 +76,9 @@ const TitleWrapper = styled.div`
 
   .heading {
     display: flex;
+    position: relative;
+    top: 1px;
+    font-size: 18px;
   }
 
   .primaryColor {
