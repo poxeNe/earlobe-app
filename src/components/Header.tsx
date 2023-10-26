@@ -8,10 +8,28 @@ type Props = {
 export const Header: FC<Props> = (props) => {
   return (
     <HeaderWrapper>
-      <Container>
-        <Title>Spotifyte</Title>
-        {`Logged in as ${props.userId}`}
-      </Container>
+      <BodyWrapper>
+        <TitleWrapper>
+          <div className="heading">
+            <h1 className="primaryColor">ear</h1>
+            <h1 className="accentColor">lo</h1>
+            <h1 className="primaryColor">.</h1>
+            <h1 className="accentColor">be</h1>
+          </div>
+        </TitleWrapper>
+
+        <div className="loggedIn">
+          <img
+            className="spotifyLogo"
+            src="/spotify.svg"
+            alt="spotify logo"
+            width={20}
+            height={20}
+          />
+
+          <p>{props.userId}</p>
+        </div>
+      </BodyWrapper>
     </HeaderWrapper>
   );
 };
@@ -21,21 +39,49 @@ const HeaderWrapper = styled.div`
   justify-content: center;
 `;
 
-const Container = styled.div`
+const BodyWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 800px;
-  height: 70px;
+  height: 50px;
   padding: 0 100px;
-  border-bottom: 1px solid rgba(230, 230, 230, 70%);
+  border-bottom: 1px solid var(--main-copy);
+
+  .loggedIn {
+    display: flex;
+
+    img {
+      position: relative;
+      top: 3px;
+    }
+
+    p {
+      font-weight: 200;
+      margin: 0 0 0 5px;
+    }
+  }
 `;
 
-const Title = styled.div`
+const TitleWrapper = styled.div`
   display: flex;
-  color: var(--primary);
-  font-family: "Palanquin Dark", sans-serif;
-  //letter-spacing: 1px;
-  font-size: 40px;
+  position: relative;
+  top: 2px;
+  color: var(--accent);
+  font-family: "Red Hat Display", sans-serif;
+  letter-spacing: 5px;
+  //font-size: 40px;
   margin: 0 0 8px;
+
+  .heading {
+    display: flex;
+  }
+
+  .primaryColor {
+    color: var(--primary);
+  }
+
+  .accentColor {
+    color: var(--accent);
+  }
 `;

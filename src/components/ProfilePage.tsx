@@ -1,8 +1,9 @@
 import { Header } from "./Header.tsx";
 import { FC } from "react";
 import { UserProfile } from "../types/types.ts";
+import { UserCard } from "./UserCard.tsx";
 import { CurrentlyPlayingCard } from "./CurrentlyPlayingCard.tsx";
-import { UserProfileCard } from "./UserProfileCard.tsx";
+import { RecentlyPlayedCard } from "./RecentlyPlayedCard.tsx";
 import styled from "@emotion/styled";
 
 type Props = {
@@ -16,13 +17,13 @@ export const ProfilePage: FC<Props> = (props) => {
       <Header userId={props.profile.id} />
 
       <BodyWrapper>
-        {props.profile ? (
-          <UserProfileCard profile={props.profile} />
-        ) : (
-          <div>No profile information found.</div>
-        )}
+        <UserCard profile={props.profile} />
 
-        <CurrentlyPlayingCard />
+        <div className="right">
+          <CurrentlyPlayingCard />
+
+          <RecentlyPlayedCard />
+        </div>
       </BodyWrapper>
     </>
   );
@@ -31,10 +32,20 @@ export const ProfilePage: FC<Props> = (props) => {
 const BodyWrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  //@media only screen and (max-width: 490px) {
+  //  flex-direction: column;
+  //}
+
   //align-items: center;
   //height: calc(100% - 70px);
   //width: 700px;
   //max-width: 600px;
   //overflow: auto;
   //padding: 30px;
+
+  .right {
+    width: 100%;
+    margin: 0 20px 0 10px;
+  }
 `;

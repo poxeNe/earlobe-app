@@ -25,12 +25,20 @@ function Root() {
     return (
       <Container>
         <TitleWrapper>
-          <h1>Spotifyte</h1>
-          <p>Level up your taste in music.</p>
+          <div className="heading">
+            <h1 className="primaryColor">ear</h1>
+            <h1 className="accentColor">lo</h1>
+            <h1 className="primaryColor">.</h1>
+            <h1 className="accentColor">be</h1>
+          </div>
+
+          <div className="sub">
+            <p>level up your taste in music.</p>
+          </div>
         </TitleWrapper>
 
         <Button
-          text={"Login with Spotify"}
+          text="login with spotify"
           img={{
             src: "/spotify.svg",
             alt: "Spotify Logo",
@@ -75,6 +83,19 @@ const TitleWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   font-family: Red Hat Display, sans-serif;
+
+  .heading,
+  .sub {
+    display: flex;
+  }
+
+  .primaryColor {
+    color: var(--primary);
+  }
+
+  .accentColor {
+    color: var(--accent);
+  }
 
   h1 {
     font-size: 69px;

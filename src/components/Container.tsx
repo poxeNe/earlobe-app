@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
   //justify-content: center;
   //align-items: center;
   //flex-direction: column;
-  height: calc(100% - 70px);
+  height: calc(100% - 50px);
   overflow: auto;
   padding: 30px;
 `;

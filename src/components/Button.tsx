@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 
 type Props = {
   text: string;
+  onClick: () => void;
   img?: {
     src: string;
     alt: string;
     width: number;
     height: number;
   };
-  onClick: () => void;
 };
 
 export const Button: FC<Props> = (props) => {
@@ -40,7 +40,7 @@ const ButtonWrapper = styled.div`
   width: 500px;
 
   button {
-    width: 210px;
+    width: 195px;
   }
 `;
 
@@ -48,29 +48,33 @@ const ButtonCard = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #4f4f4f;
+  border: 1px solid var(--secondary);
   border-radius: 7px;
-  background-color: var(--primary);
+  background-color: var(--secondary-light);
   font-size: 16px;
-  font-family: Red Hat Display, sans-serif;
+  font-family: "Red Hat Display", sans-serif;
   color: #ddd;
 
   &:hover {
     cursor: pointer;
-    background-color: #1a4d18;
-    border-color: #338c10;
+    background-color: var(--accent-dark);
+    border-color: var(--accent-light);
   }
 `;
 
 const ButtonInner = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
-  padding: 12px 17px;
+  padding: 10px 0;
 
   img {
+    position: relative;
+    //top: 2px;
   }
 
   .text {
+    position: relative;
+    top: 2px;
   }
 `;

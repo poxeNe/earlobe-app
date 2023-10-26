@@ -10,17 +10,35 @@ const currentlyPlayingReq = await fetchCurrentlyPlaying();
 
 export const CurrentlyPlayingCard: FC<Props> = () => {
   if (!currentlyPlayingReq.success) {
-    return <div>No song currently playing.</div>;
-  } else {
     return (
-      <CurrentlyPlayingWrapper>
+      <Wrapper>
         <div className="heading">
-          <h3>Currently playing:</h3>
+          <h3>currently playing</h3>
         </div>
 
-        <Card>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0 0 0",
+            height: "100px",
+          }}
+        >
+          no song currently playing.
+        </div>
+      </Wrapper>
+    );
+  } else {
+    return (
+      <Wrapper>
+        <div className="heading">
+          <h3>currently playing</h3>
+        </div>
+
+        <Body>
           {currentlyPlayingReq.currentlyPlaying.item ? (
-            <>
+            <BodyCard>
               <ArtistImageWrapper>
                 <img
                   src={
@@ -32,6 +50,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
                   height={80}
                 />
               </ArtistImageWrapper>
+
               <ArtistDataWrapper>
                 <p className="title">
                   {currentlyPlayingReq.currentlyPlaying.item.name}
@@ -58,18 +77,18 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
                   {currentlyPlayingReq.currentlyPlaying.item.album.name}
                 </div>
               </ArtistDataWrapper>
-            </>
+            </BodyCard>
           ) : (
             <div>a song is not playing.</div>
           )}
-        </Card>
-      </CurrentlyPlayingWrapper>
+        </Body>
+      </Wrapper>
     );
   }
 };
 
-const CurrentlyPlayingWrapper = styled.div`
-  width: 600px;
+const Wrapper = styled.div`
+  width: 100%;
   margin: 20px 20px 20px 0;
 
   .heading {
@@ -78,19 +97,16 @@ const CurrentlyPlayingWrapper = styled.div`
 
     h3 {
       font-size: 26px;
-      font-family: Red Hat Display, sans-serif;
+      font-family: "Red Hat Display", sans-serif;
       font-weight: 300;
       margin: 0 0 5px 0;
     }
   }
 `;
 
-const Card = styled.div`
+const Body = styled.div`
   display: flex;
   padding: 10px;
-  background-color: #000;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 
   .title {
     font-size: 20px;
@@ -103,6 +119,16 @@ const Card = styled.div`
     gap: 5px;
     font-size: 18px;
   }
+`;
+
+const BodyCard = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background-color: #080808;
+  border: 1px solid #888;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #000;
 `;
 
 const ArtistImageWrapper = styled.div`

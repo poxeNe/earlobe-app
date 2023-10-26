@@ -1,5 +1,6 @@
 import { UserProfile } from "../../types/types.ts";
 import differenceInHours from "date-fns/differenceInHours";
+import { clearLocalStorage } from "../clearLocalStorage.ts";
 
 export type ProfileResult =
   | {
@@ -35,7 +36,7 @@ export const fetchProfile = async (): Promise<ProfileResult> => {
   });
 
   if (!result.ok) {
-    localStorage.removeItem("accessTokenObj");
+    clearLocalStorage();
 
     return {
       success: false,

@@ -1,5 +1,6 @@
 import { CurrentlyPlaying } from "../../types/types.ts";
 import differenceInHours from "date-fns/differenceInHours";
+import { clearLocalStorage } from "../clearLocalStorage.ts";
 
 export type CurrentlyPlayingResult =
   | {
@@ -39,7 +40,7 @@ export const fetchCurrentlyPlaying =
     );
 
     if (!result.ok) {
-      localStorage.removeItem("accessTokenObj");
+      clearLocalStorage();
 
       return {
         success: false,

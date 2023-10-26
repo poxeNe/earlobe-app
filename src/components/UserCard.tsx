@@ -6,32 +6,37 @@ type Props = {
   profile: UserProfile;
 };
 
-export const UserProfileCard: FC<Props> = (props) => {
+export const UserCard: FC<Props> = (props) => {
   return (
-    <UserInformationWrapper>
+    <Wrapper>
       <div className="heading">
-        <h3>User information:</h3>
+        <h3>user</h3>
       </div>
 
       <Card>
         {props.profile ? (
           <>
             <ProfileDataWrapper>
-              <p>ID: {props.profile.id}</p>
-              <p>Email: {props.profile.email}</p>
+              <p>username:</p>
+              <p>spotify id: {props.profile.id}</p>
+              <p>email: {props.profile.email}</p>
+              <p>lorem: ipsum</p>
+              <p>lorem: ipsum</p>
+              <p>lorem: ipsum</p>
+              <p>lorem: ipsum</p>
             </ProfileDataWrapper>
           </>
         ) : (
           <div>
-            <p>No profile found.</p>
+            <p>no profile found.</p>
           </div>
         )}
       </Card>
-    </UserInformationWrapper>
+    </Wrapper>
   );
 };
 
-const UserInformationWrapper = styled.div`
+const Wrapper = styled.div`
   width: 300px;
   margin: 20px;
 
@@ -41,7 +46,7 @@ const UserInformationWrapper = styled.div`
 
     h3 {
       font-size: 26px;
-      font-family: Red Hat Display, sans-serif;
+      font-family: "Red Hat Display", sans-serif;
       font-weight: 300;
       margin: 0 0 5px 0;
     }

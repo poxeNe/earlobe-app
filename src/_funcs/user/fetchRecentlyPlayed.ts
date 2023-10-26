@@ -1,5 +1,6 @@
 import { RecentlyPlayed } from "../../types/types.ts";
 import differenceInHours from "date-fns/differenceInHours";
+import { clearLocalStorage } from "../clearLocalStorage.ts";
 
 export type RecentlyPlayedResult =
   | {
@@ -38,7 +39,7 @@ export const fetchRecentlyPlayed = async (): Promise<RecentlyPlayedResult> => {
   );
 
   if (!result.ok) {
-    localStorage.removeItem("accessTokenObj");
+    clearLocalStorage();
 
     return {
       success: false,

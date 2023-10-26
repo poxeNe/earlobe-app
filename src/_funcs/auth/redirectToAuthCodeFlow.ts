@@ -13,7 +13,7 @@ export const redirectToAuthCodeFlow = async (clientId: string) => {
   params.append("redirect_uri", "http://localhost:5173/");
   params.append(
     "scope",
-    "user-read-private user-read-email user-read-currently-playing"
+    "user-read-private user-read-email user-read-currently-playing user-read-recently-played"
   );
   params.append("code_challenge_method", "S256");
   params.append("code_challenge", challenge);
