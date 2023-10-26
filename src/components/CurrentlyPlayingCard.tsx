@@ -25,7 +25,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
             height: "100px",
           }}
         >
-          no song currently playing.
+          we couldn't find a song playing. if there is, try refreshing the page.
         </div>
       </Wrapper>
     );
@@ -37,7 +37,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
         </div>
 
         <Body>
-          {currentlyPlayingReq.currentlyPlaying.item ? (
+          {currentlyPlayingReq.currentlyPlaying.item && (
             <BodyCard>
               <ArtistImageWrapper>
                 <img
@@ -78,8 +78,6 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
                 </div>
               </ArtistDataWrapper>
             </BodyCard>
-          ) : (
-            <div>a song is not playing.</div>
           )}
         </Body>
       </Wrapper>

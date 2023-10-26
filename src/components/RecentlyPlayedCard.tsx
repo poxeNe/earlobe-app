@@ -34,7 +34,7 @@ export const RecentlyPlayedCard: FC<Props> = () => {
         </div>
 
         <BodyWrapper>
-          {recentlyPlayedReq.recentlyPlayed.items.length > 0 ? (
+          {recentlyPlayedReq.recentlyPlayed.items.length > 0 && (
             <Body>
               {recentlyPlayedReq.recentlyPlayed.items.map(
                 (item: PlayHistory, i) => {
@@ -65,8 +65,6 @@ export const RecentlyPlayedCard: FC<Props> = () => {
                 }
               )}
             </Body>
-          ) : (
-            <div>no recently played songs found.</div>
           )}
         </BodyWrapper>
       </Wrapper>
