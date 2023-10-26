@@ -12,7 +12,7 @@ export const redirectToAuthCodeFlow = async (clientId: string) => {
   params.append("response_type", "code");
   params.append(
     "redirect_uri",
-    `${import.meta.env.DEV ? "http://localhost:5173/" : "https://earlo.be"}`
+    `${import.meta.env.DEV ? "http://localhost:5173/" : "https://earlo.be/"}`
   );
   params.append(
     "scope",

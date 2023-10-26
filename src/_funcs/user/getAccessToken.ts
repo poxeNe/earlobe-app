@@ -7,7 +7,7 @@ export const getAccessToken = async (clientId: string, code: string) => {
   body.append("code", code);
   body.append(
     "redirect_uri",
-    `${import.meta.env.DEV ? "http://localhost:5173/" : "https://earlo.be"}`
+    `${import.meta.env.DEV ? "http://localhost:5173/" : "https://earlo.be/"}`
   );
   body.append("code_verifier", verifier!);
 
