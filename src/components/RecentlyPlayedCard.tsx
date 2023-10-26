@@ -15,16 +15,22 @@ const recentlyPlayedReq: RecentlyPlayedResult = await fetchRecentlyPlayed(10);
 export const RecentlyPlayedCard: FC<Props> = () => {
   if (!recentlyPlayedReq.success) {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "20px 0 0 0",
-        }}
-      >
-        no recently played songs found.
-      </div>
+      <Wrapper>
+        <div className="heading">
+          <h3>recently played</h3>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "20px 0 0 0",
+          }}
+        >
+          no recently played songs found.
+        </div>
+      </Wrapper>
     );
   } else {
     return (
