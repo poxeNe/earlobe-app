@@ -5,7 +5,7 @@ export const getAccessToken = async (clientId: string, code: string) => {
   body.append("client_id", clientId);
   body.append("grant_type", "authorization_code");
   body.append("code", code);
-  body.append("redirect_uri", "http://localhost:5173/");
+  body.append("redirect_uri", "https://earlo.be/");
   body.append("code_verifier", verifier!);
 
   const response = await fetch("https://accounts.spotify.com/api/token", {

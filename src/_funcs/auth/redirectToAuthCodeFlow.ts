@@ -10,7 +10,7 @@ export const redirectToAuthCodeFlow = async (clientId: string) => {
   const params = new URLSearchParams();
   params.append("client_id", clientId);
   params.append("response_type", "code");
-  params.append("redirect_uri", "http://localhost:5173/");
+  params.append("redirect_uri", "https://earlo.be/");
   params.append(
     "scope",
     "user-read-private user-read-email user-read-currently-playing user-read-recently-played"
