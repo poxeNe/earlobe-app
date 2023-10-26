@@ -48,7 +48,7 @@ const Wrapper = styled.div`
       font-size: 26px;
       font-family: "Red Hat Display", sans-serif;
       font-weight: 300;
-      margin: 0 0 5px 0;
+      margin: 0 0 3px 5px;
     }
   }
 `;
