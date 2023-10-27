@@ -16,15 +16,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
           <h3>currently playing</h3>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "20px 0 0 0",
-            height: "100px",
-          }}
-        >
+        <div className="emptyMessage">
           we couldn't find a song playing. if there is, try refreshing the page.
         </div>
       </Wrapper>
@@ -88,6 +80,14 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
 const Wrapper = styled.div`
   width: 100%;
   margin: 20px 20px 20px 0;
+
+  .emptyMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+    height: 100px;
+  }
 
   .heading {
     margin: 0 0 17px 0;
