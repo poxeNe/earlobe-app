@@ -17,7 +17,8 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
         </div>
 
         <div className="emptyMessage">
-          we couldn't find a song playing. if there is, try refreshing the page.
+          we couldn't find a song playing. check again, and then try refreshing
+          the page.
         </div>
       </Wrapper>
     );

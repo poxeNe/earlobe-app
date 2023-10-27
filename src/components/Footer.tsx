@@ -53,6 +53,7 @@ const Body = styled.div`
 
     .poxene {
       text-decoration: none;
+      color: var(--main-copy);
 
       &:visited {
         color: #e08514;

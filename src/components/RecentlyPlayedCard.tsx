@@ -21,7 +21,7 @@ export const RecentlyPlayedCard: FC<Props> = () => {
         </div>
 
         <div className="emptyMessage">
-          we couldn't find any recently played songs. :[
+          we couldn't find any recently played songs.
         </div>
       </Wrapper>
     );
