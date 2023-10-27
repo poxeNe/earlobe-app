@@ -14,10 +14,10 @@ type Props = {
 
 export const ProfilePage: FC<Props> = (props) => {
   return (
-    <>
+    <Wrapper>
       <Header userId={props.profile.id} />
 
-      <BodyWrapper>
+      <BodyWrapper className="bodyWrapper">
         <UserCard profile={props.profile} />
 
         <div className="right">
@@ -28,17 +28,31 @@ export const ProfilePage: FC<Props> = (props) => {
       </BodyWrapper>
 
       <Footer />
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 900px;
+
+  @media only screen and (max-width: 900px) {
+    width: 90vw;
+  }
+`;
 
 const BodyWrapper = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 
-  //@media only screen and (max-width: 490px) {
-  //  flex-direction: column;
-  //}
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   //align-items: center;
   //height: calc(100% - 70px);

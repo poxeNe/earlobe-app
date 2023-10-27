@@ -40,6 +40,10 @@ const Wrapper = styled.div`
   width: 300px;
   margin: 20px;
 
+  @media only screen and (max-width: 490px) {
+    width: 100%;
+  }
+
   .heading {
     margin: 0 0 17px 0;
     border-bottom: 1px solid rgba(230, 230, 230, 70%);

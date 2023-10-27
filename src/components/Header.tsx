@@ -48,6 +48,10 @@ const BodyWrapper = styled.div`
   padding: 0 100px;
   border-bottom: 1px solid var(--main-copy);
 
+  @media only screen and (max-width: 490px) {
+    width: 90%;
+  }
+
   .loggedIn {
     display: flex;
     letter-spacing: 1px;
