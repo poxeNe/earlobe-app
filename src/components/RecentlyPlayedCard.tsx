@@ -4,8 +4,9 @@ import {
   fetchRecentlyPlayed,
   RecentlyPlayedResult,
 } from "../_funcs/user/fetchRecentlyPlayed.ts";
-import { PlayHistory, RecentlyPlayed } from "../types/types.ts";
+import { Artist, PlayHistory, RecentlyPlayed } from "../types/types.ts";
 import { Loading } from "./Loading.tsx";
+import { shortenString } from "../_funcs/util/shortenString.ts";
 
 type Props = {
   // currentlyPlaying: CurrentlyPlaying;
@@ -37,6 +38,20 @@ export const RecentlyPlayedCard: FC<Props> = () => {
     fetch();
   }, [setRecentlyPlayed]);
 
+  const renderArtists = (artists: Artist[]) => {
+    if (artists.length > 0) {
+      if (artists.length >= 2) {
+        return `${artists[0].name} and ${artists.length - 1} ${
+          artists.length - 1 === 1 ? "other" : "others"
+        }`;
+      }
+
+      return `${artists[0].name}`;
+    }
+
+    return "no artists found.";
+  };
+
   if (recentlyPlayed?.items.length === 0) {
     return (
       <Wrapper>
@@ -66,24 +81,18 @@ export const RecentlyPlayedCard: FC<Props> = () => {
               return (
                 <BodyCard className={`bodyCard${i}`}>
                   <div className="title">
-                    <p>{item.track.name}</p>
+                    <p>{shortenString(item.track.name, 30)}</p>
                   </div>
 
                   <div className="artist">
                     <p className="by">by</p>
 
-                    {item.track.artists.map((artist, i) => {
-                      if (i + 1 < item.track.artists.length) {
-                        return <p key={artist.id}>{artist.name},</p>;
-                      } else {
-                        return <p key={artist.id}>{artist.name}</p>;
-                      }
-                    })}
+                    <p>{renderArtists(item.track.artists)}</p>
                   </div>
 
                   <div className="album">
                     <p className="on">on</p>
-                    <p>{item.track.album.name}</p>
+                    <p>{shortenString(item.track.album.name, 25)}</p>
                   </div>
                 </BodyCard>
               );

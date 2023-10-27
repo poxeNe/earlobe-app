@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { fetchCurrentlyPlaying } from "../_funcs/user/fetchCurrentlyPlaying.ts";
-import { CurrentlyPlaying } from "../types/types.ts";
+import { Artist, CurrentlyPlaying } from "../types/types.ts";
 import { Loading } from "./Loading.tsx";
+import { shortenString } from "../_funcs/util/shortenString.ts";
 
 type Props = {
   // currentlyPlaying: CurrentlyPlaying;
@@ -31,6 +32,22 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
 
     fetch();
   }, [setCurrentlyPlaying]);
+
+  const renderArtists = (artists: Artist[]) => {
+    if (artists.length > 0) {
+      if (artists.length >= 2) {
+        return `${artists[0].name}, ${artists[1].name}, ${
+          artists[2].name
+        } and ${artists.length - 3} ${
+          artists.length - 1 === 1 ? "other" : "others"
+        }`;
+      }
+
+      return `${artists[0].name}`;
+    }
+
+    return "no artists found.";
+  };
 
   if (!currentlyPlaying?.item.id) {
     return (
@@ -69,17 +86,13 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
               </ArtistImageWrapper>
 
               <ArtistDataWrapper>
-                <p className="title">{currentlyPlaying.item.name}</p>
+                <p className="title">
+                  {shortenString(currentlyPlaying.item.name, 60)}
+                </p>
 
                 <div className="artist">
                   <p>by</p>
-                  {currentlyPlaying.item.artists.map((artist, i) => {
-                    if (i + 1 < currentlyPlaying.item.artists.length) {
-                      return <p key={artist.id}>{artist.name},</p>;
-                    } else {
-                      return <p key={artist.id}>{artist.name}</p>;
-                    }
-                  })}
+                  {renderArtists(currentlyPlaying.item.artists)}
                 </div>
 
                 <div className="album">
