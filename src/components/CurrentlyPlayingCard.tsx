@@ -1,25 +1,52 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { fetchCurrentlyPlaying } from "../_funcs/user/fetchCurrentlyPlaying.ts";
+import { CurrentlyPlaying } from "../types/types.ts";
+import { Loading } from "./Loading.tsx";
 
 type Props = {
   // currentlyPlaying: CurrentlyPlaying;
 };
 
-const currentlyPlayingReq = await fetchCurrentlyPlaying();
-
 export const CurrentlyPlayingCard: FC<Props> = () => {
-  if (!currentlyPlayingReq.success) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<CurrentlyPlaying>();
+
+  useEffect(() => {
+    const fetch = async () => {
+      setIsLoading(true);
+
+      const currentlyPlayingReq = await fetchCurrentlyPlaying();
+
+      if (!currentlyPlayingReq.success) {
+        setIsLoading(false);
+        return;
+      }
+
+      // if (currentlyPlayingReq.)
+
+      setCurrentlyPlaying(currentlyPlayingReq.currentlyPlaying);
+      setIsLoading(false);
+    };
+
+    fetch();
+  }, [setCurrentlyPlaying]);
+
+  if (!currentlyPlaying?.item.id) {
     return (
       <Wrapper>
         <div className="heading">
           <h3>currently playing</h3>
         </div>
 
-        <div className="emptyMessage">
-          we couldn't find a song playing. check again, and then try refreshing
-          the page.
-        </div>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="emptyMessage">
+            we couldn't find a song playing. check again, and then try
+            refreshing the page.
+          </div>
+        )}
       </Wrapper>
     );
   } else {
@@ -30,14 +57,11 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
         </div>
 
         <Body>
-          {currentlyPlayingReq.currentlyPlaying.item && (
+          {currentlyPlaying.item && (
             <BodyCard>
               <ArtistImageWrapper>
                 <img
-                  src={
-                    currentlyPlayingReq.currentlyPlaying.item.album.images[1]
-                      .url
-                  }
+                  src={currentlyPlaying.item.album.images[1].url}
                   alt="Album Art"
                   width={80}
                   height={80}
@@ -45,29 +69,22 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
               </ArtistImageWrapper>
 
               <ArtistDataWrapper>
-                <p className="title">
-                  {currentlyPlayingReq.currentlyPlaying.item.name}
-                </p>
+                <p className="title">{currentlyPlaying.item.name}</p>
 
                 <div className="artist">
                   <p>by</p>
-                  {currentlyPlayingReq.currentlyPlaying.item.artists.map(
-                    (artist, i) => {
-                      if (
-                        i + 1 <
-                        currentlyPlayingReq.currentlyPlaying.item.artists.length
-                      ) {
-                        return <p key={artist.id}>{artist.name},</p>;
-                      } else {
-                        return <p key={artist.id}>{artist.name}</p>;
-                      }
+                  {currentlyPlaying.item.artists.map((artist, i) => {
+                    if (i + 1 < currentlyPlaying.item.artists.length) {
+                      return <p key={artist.id}>{artist.name},</p>;
+                    } else {
+                      return <p key={artist.id}>{artist.name}</p>;
                     }
-                  )}
+                  })}
                 </div>
 
                 <div className="album">
                   <p>on</p>
-                  {currentlyPlayingReq.currentlyPlaying.item.album.name}
+                  {currentlyPlaying.item.album.name}
                 </div>
               </ArtistDataWrapper>
             </BodyCard>

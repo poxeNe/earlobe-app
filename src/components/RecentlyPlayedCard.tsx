@@ -1,28 +1,56 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import {
   fetchRecentlyPlayed,
   RecentlyPlayedResult,
 } from "../_funcs/user/fetchRecentlyPlayed.ts";
-import { PlayHistory } from "../types/types.ts";
+import { PlayHistory, RecentlyPlayed } from "../types/types.ts";
+import { Loading } from "./Loading.tsx";
 
 type Props = {
   // currentlyPlaying: CurrentlyPlaying;
 };
 
-const recentlyPlayedReq: RecentlyPlayedResult = await fetchRecentlyPlayed(10);
+const NUM_RECENTLY_PLAYED = 10;
 
 export const RecentlyPlayedCard: FC<Props> = () => {
-  if (!recentlyPlayedReq.success) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [recentlyPlayed, setRecentlyPlayed] = useState<RecentlyPlayed>();
+
+  useEffect(() => {
+    const fetch = async () => {
+      setIsLoading(true);
+
+      const recentlyPlayedReq: RecentlyPlayedResult = await fetchRecentlyPlayed(
+        NUM_RECENTLY_PLAYED
+      );
+
+      if (!recentlyPlayedReq.success) {
+        setIsLoading(false);
+        return;
+      }
+
+      setRecentlyPlayed(recentlyPlayedReq.recentlyPlayed);
+      setIsLoading(false);
+    };
+
+    fetch();
+  }, [setRecentlyPlayed]);
+
+  if (recentlyPlayed?.items.length === 0) {
     return (
       <Wrapper>
         <div className="heading">
           <h3>recently played</h3>
         </div>
 
-        <div className="emptyMessage">
-          we couldn't find any recently played songs.
-        </div>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="emptyMessage">
+            we couldn't find any recently played songs.
+          </div>
+        )}
       </Wrapper>
     );
   } else {
@@ -33,38 +61,34 @@ export const RecentlyPlayedCard: FC<Props> = () => {
         </div>
 
         <BodyWrapper>
-          {recentlyPlayedReq.recentlyPlayed.items.length > 0 && (
-            <Body>
-              {recentlyPlayedReq.recentlyPlayed.items.map(
-                (item: PlayHistory, i) => {
-                  return (
-                    <BodyCard className={`bodyCard${i}`}>
-                      <div className="title">
-                        <p>{item.track.name}</p>
-                      </div>
+          <Body>
+            {recentlyPlayed?.items.map((item: PlayHistory, i) => {
+              return (
+                <BodyCard className={`bodyCard${i}`}>
+                  <div className="title">
+                    <p>{item.track.name}</p>
+                  </div>
 
-                      <div className="artist">
-                        <p className="by">by</p>
+                  <div className="artist">
+                    <p className="by">by</p>
 
-                        {item.track.artists.map((artist, i) => {
-                          if (i + 1 < item.track.artists.length) {
-                            return <p key={artist.id}>{artist.name},</p>;
-                          } else {
-                            return <p key={artist.id}>{artist.name}</p>;
-                          }
-                        })}
-                      </div>
+                    {item.track.artists.map((artist, i) => {
+                      if (i + 1 < item.track.artists.length) {
+                        return <p key={artist.id}>{artist.name},</p>;
+                      } else {
+                        return <p key={artist.id}>{artist.name}</p>;
+                      }
+                    })}
+                  </div>
 
-                      <div className="album">
-                        <p className="on">on</p>
-                        <p>{item.track.album.name}</p>
-                      </div>
-                    </BodyCard>
-                  );
-                }
-              )}
-            </Body>
-          )}
+                  <div className="album">
+                    <p className="on">on</p>
+                    <p>{item.track.album.name}</p>
+                  </div>
+                </BodyCard>
+              );
+            })}
+          </Body>
         </BodyWrapper>
       </Wrapper>
     );

@@ -54,6 +54,8 @@ export const fetchCurrentlyPlaying =
       };
     }
 
+    // if (result.status === 200)
+
     return {
       success: true,
       currentlyPlaying: (await result.json()) as CurrentlyPlaying,

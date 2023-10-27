@@ -14,6 +14,7 @@ export const Footer = () => {
             >
               poxeNe
             </a>
+            . powered by spotify.
           </p>
         </Body>
       </BodyWrapper>
