@@ -50,6 +50,13 @@ export const fetchRecentlyPlayed = async (
     };
   }
 
+  //--- if response is successfully completed but returns empty json.
+  if (result.status === 204) {
+    return {
+      success: false,
+    };
+  }
+
   return {
     success: true,
     recentlyPlayed: (await result.json()) as RecentlyPlayed,

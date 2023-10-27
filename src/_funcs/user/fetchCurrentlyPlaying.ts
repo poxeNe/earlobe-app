@@ -47,6 +47,13 @@ export const fetchCurrentlyPlaying =
       };
     }
 
+    //--- if response is successfully completed but returns empty json.
+    if (result.status === 204) {
+      return {
+        success: false,
+      };
+    }
+
     return {
       success: true,
       currentlyPlaying: (await result.json()) as CurrentlyPlaying,
