@@ -38,7 +38,7 @@ export const UserCard: FC<Props> = (props) => {
 
 const Wrapper = styled.div`
   width: 300px;
-  margin: 20px;
+  padding: 15px;
 
   @media only screen and (max-width: 490px) {
     width: 100%;

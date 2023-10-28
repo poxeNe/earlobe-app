@@ -110,7 +110,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 20px 20px 20px 0;
+  //margin: 20px 0;
 
   .emptyMessage {
     display: flex;
@@ -140,8 +140,8 @@ const Wrapper = styled.div`
 const Body = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 10px;
-  width: 100%;
+  width: auto;
+  padding: 0 13px;
 
   .title {
     font-size: 20px;

@@ -58,7 +58,7 @@ const BodyWrapper = styled.div`
 
   .right {
     width: 100%;
-    margin: 0 20px 0 10px;
+    padding: 15px;
   }
 
   @media only screen and (max-width: 900px) {
