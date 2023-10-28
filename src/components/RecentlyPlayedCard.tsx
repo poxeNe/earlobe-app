@@ -79,7 +79,7 @@ export const RecentlyPlayedCard: FC<Props> = () => {
         <Body>
           {recentlyPlayed?.items.map((item: PlayHistory, i) => {
             return (
-              <BodyCard className={`bodyCard${i}`}>
+              <BodyCard className={`bodyCard${i}`} key={item.track.name + String(i)}>
                 <div className="title">
                   <p>{shortenString(item.track.name, 30)}</p>
                 </div>
@@ -151,12 +151,12 @@ const Body = styled.div`
   width: auto;
   padding: 0 13px;
 
-  > div:nth-child(odd) {
+  > div:nth-of-type(odd) {
     background-color: #080808;
     border: 1px solid #888;
   }
 
-  > div:nth-child(even) {
+  > div:nth-of-type(even) {
     background-color: #012118;
     border: 1px solid #0f8c5f;
   }
