@@ -127,12 +127,20 @@ const Wrapper = styled.div`
       margin: 0 0 3px 5px;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    margin: 0;
+  }
 `;
 
 const BodyWrapper = styled.div`
   display: flex;
   padding: 0 10px;
   border-radius: 5px;
+
+  @media only screen and (max-width: 900px) {
+    padding: 0;
+  }
 `;
 
 const Body = styled.div`
@@ -197,6 +205,7 @@ const BodyCard = styled.div`
   border-radius: 5px;
   padding: 8px 12px;
   box-shadow: 1px 1px 3px #000;
+  width: 100%;
 
   .title {
     //font-size: 20px;

@@ -131,11 +131,17 @@ const Wrapper = styled.div`
       margin: 0 0 3px 5px;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    margin: 20px 0;
+  }
 `;
 
 const Body = styled.div`
   display: flex;
+  justify-content: center;
   padding: 0 10px;
+  width: 100%;
 
   .title {
     font-size: 20px;
@@ -148,6 +154,10 @@ const Body = styled.div`
     gap: 5px;
     font-size: 18px;
   }
+
+  @media only screen and (max-width: 900px) {
+    padding: 0;
+  }
 `;
 
 const BodyCard = styled.div`
@@ -158,6 +168,10 @@ const BodyCard = styled.div`
   border: 1px solid #888;
   border-radius: 5px;
   box-shadow: 2px 2px 5px #000;
+
+  @media only screen and (max-width: 900px) {
+    //padding: 0;
+  }
 `;
 
 const ArtistImageWrapper = styled.div`

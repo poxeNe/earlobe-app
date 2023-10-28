@@ -36,6 +36,11 @@ const BodyWrapper = styled.div`
   height: 50px;
   padding: 0 100px;
   border-top: 1px solid var(--main-copy);
+
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 const Body = styled.div`

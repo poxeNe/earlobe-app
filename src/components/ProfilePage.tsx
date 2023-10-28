@@ -49,11 +49,6 @@ const BodyWrapper = styled.div`
   justify-content: center;
   width: 100%;
 
-  @media only screen and (max-width: 900px) {
-    flex-direction: column;
-    align-items: center;
-  }
-
   //align-items: center;
   //height: calc(100% - 70px);
   //width: 700px;
@@ -64,5 +59,15 @@ const BodyWrapper = styled.div`
   .right {
     width: 100%;
     margin: 0 20px 0 10px;
+  }
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .right {
+      margin: 0;
+    }
   }
 `;

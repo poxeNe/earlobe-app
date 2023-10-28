@@ -23,7 +23,7 @@ function Root() {
 
   const renderLanding = () => {
     return (
-      <Container>
+      <Wrapper>
         <TitleWrapper>
           <div className="heading">
             <h1 className="primaryColor">ear</h1>
@@ -47,28 +47,29 @@ function Root() {
           }}
           onClick={() => handleClick()}
         />
-      </Container>
+      </Wrapper>
     );
   };
 
   return (
-    <>
+    <Wrapper>
       {!profileReq.success ? (
         renderLanding()
       ) : (
         <ProfilePage profile={profileReq.profile} />
       )}
-    </>
+    </Wrapper>
   );
 }
 
 export default Root;
 
-const Container = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100vw;
   height: 100vh;
 
   button {
