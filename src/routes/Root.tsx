@@ -69,8 +69,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
 
   button {
     margin: 25px 0 0;
@@ -83,7 +81,7 @@ const TitleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: Red Hat Display, sans-serif;
+  font-family: "Red Hat Display", sans-serif;
 
   .heading,
   .sub {

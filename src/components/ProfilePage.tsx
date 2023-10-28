@@ -34,13 +34,16 @@ export const ProfilePage: FC<Props> = (props) => {
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  //align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   width: 900px;
 
   @media only screen and (max-width: 900px) {
+    position: relative;
+    top: 0;
     width: 90vw;
+    height: 100%;
   }
 `;
 

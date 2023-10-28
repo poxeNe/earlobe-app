@@ -59,7 +59,7 @@ const Wrapper = styled.div`
 
 const Body = styled.div`
   display: flex;
-  padding: 0 10px;
+  //padding: 0 10px;
 `;
 
 const BodyCard = styled.div`
