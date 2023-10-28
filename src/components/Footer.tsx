@@ -5,17 +5,21 @@ export const Footer = () => {
     <FooterWrapper>
       <BodyWrapper>
         <Body>
-          <p>
-            created with love by{" "}
-            <a
-              className="poxene"
-              href="https://buymeacoffee.com/poxeNe"
-              target="_blank"
-            >
-              poxeNe
-            </a>
-            . powered by spotify.
-          </p>
+          <div className="text">
+            <p className="created">
+              created with love by{" "}
+              <a
+                className="poxene"
+                href="https://buymeacoffee.com/poxeNe"
+                target="_blank"
+              >
+                poxeNe
+              </a>
+              .
+            </p>
+
+            <p className="powered">powered by spotify.</p>
+          </div>
         </Body>
       </BodyWrapper>
     </FooterWrapper>
@@ -39,23 +43,31 @@ const BodyWrapper = styled.div`
 
   @media only screen and (max-width: 900px) {
     width: 100%;
+    height: 60px;
     padding: 0;
   }
 `;
 
 const Body = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: var(--main-copy);
   font-family: "Red Hat Display", sans-serif;
   font-size: 14px;
   letter-spacing: 3px;
   //font-size: 40px;
 
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .powered {
+      margin: 0 0 0 3px;
+    }
+  }
+
   p {
     position: relative;
-    top: -5px;
+    top: 0px;
 
     .poxene {
       text-decoration: none;
@@ -68,6 +80,19 @@ const Body = styled.div`
       &:hover {
         color: var(--accent-light);
       }
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    height: 40px;
+
+    .text {
+      flex-direction: column;
+      //margin: 5px 0;
+    }
+
+    p {
+      top: 0;
     }
   }
 `;
