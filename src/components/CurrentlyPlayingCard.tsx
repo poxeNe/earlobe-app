@@ -144,7 +144,7 @@ const Body = styled.div`
   padding: 0 13px;
 
   .title {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 600;
   }
 
