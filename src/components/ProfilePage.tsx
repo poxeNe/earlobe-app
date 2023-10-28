@@ -70,7 +70,7 @@ const BodyWrapper = styled.div`
     justify-content: center;
 
     .right {
-      margin: 0;
+      padding-top: 0;
     }
   }
 `;

@@ -37,7 +37,6 @@ export const Button: FC<Props> = (props) => {
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 500px;
 
   button {
     width: 195px;

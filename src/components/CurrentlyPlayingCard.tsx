@@ -74,7 +74,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
         </div>
 
         <Body>
-          {currentlyPlaying.item && (
+          {currentlyPlaying.item.name && (
             <BodyCard>
               <ArtistImageWrapper>
                 <img
@@ -133,7 +133,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 900px) {
-    margin: 20px 0;
+    margin: 0 0 20px 0;
   }
 `;
 
