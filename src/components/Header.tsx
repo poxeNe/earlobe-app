@@ -37,6 +37,9 @@ export const Header: FC<Props> = (props) => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
+  
+  @media only screen and (max-width: 900px) {
+  }
 `;
 
 const BodyWrapper = styled.div`
@@ -47,6 +50,12 @@ const BodyWrapper = styled.div`
   height: 50px;
   padding: 0 100px;
   border-bottom: 1px solid var(--main-copy);
+
+  @media only screen and (max-width: 900px) {
+    height: 60px;
+    width: 100%;
+    padding: 0 30px;
+  }
 
   .loggedIn {
     display: flex;

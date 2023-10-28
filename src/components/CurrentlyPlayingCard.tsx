@@ -74,7 +74,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
         </div>
 
         <Body>
-          {currentlyPlaying.item && (
+          {currentlyPlaying.item.name && (
             <BodyCard>
               <ArtistImageWrapper>
                 <img
@@ -110,7 +110,7 @@ export const CurrentlyPlayingCard: FC<Props> = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 20px 20px 20px 0;
+  //margin: 20px 0;
 
   .emptyMessage {
     display: flex;
@@ -131,14 +131,20 @@ const Wrapper = styled.div`
       margin: 0 0 3px 5px;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    margin: 17px 0;
+  }
 `;
 
 const Body = styled.div`
   display: flex;
-  padding: 0 10px;
+  justify-content: center;
+  width: auto;
+  padding: 0 13px;
 
   .title {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 600;
   }
 
@@ -147,6 +153,10 @@ const Body = styled.div`
     display: flex;
     gap: 5px;
     font-size: 18px;
+  }
+
+  @media only screen and (max-width: 900px) {
+    padding: 0;
   }
 `;
 
@@ -158,6 +168,10 @@ const BodyCard = styled.div`
   border: 1px solid #888;
   border-radius: 5px;
   box-shadow: 2px 2px 5px #000;
+
+  @media only screen and (max-width: 900px) {
+    //padding: 0;
+  }
 `;
 
 const ArtistImageWrapper = styled.div`

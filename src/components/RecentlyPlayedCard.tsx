@@ -75,30 +75,30 @@ export const RecentlyPlayedCard: FC<Props> = () => {
           <h3>recently played</h3>
         </div>
 
-        <BodyWrapper>
-          <Body>
-            {recentlyPlayed?.items.map((item: PlayHistory, i) => {
-              return (
-                <BodyCard className={`bodyCard${i}`}>
-                  <div className="title">
-                    <p>{shortenString(item.track.name, 30)}</p>
-                  </div>
+        {/*<BodyWrapper>*/}
+        <Body>
+          {recentlyPlayed?.items.map((item: PlayHistory, i) => {
+            return (
+              <BodyCard className={`bodyCard${i}`}>
+                <div className="title">
+                  <p>{shortenString(item.track.name, 30)}</p>
+                </div>
 
-                  <div className="artist">
-                    <p className="by">by</p>
+                <div className="artist">
+                  <p className="by">by</p>
 
-                    <p>{renderArtists(item.track.artists)}</p>
-                  </div>
+                  <p>{renderArtists(item.track.artists)}</p>
+                </div>
 
-                  <div className="album">
-                    <p className="on">on</p>
-                    <p>{shortenString(item.track.album.name, 25)}</p>
-                  </div>
-                </BodyCard>
-              );
-            })}
-          </Body>
-        </BodyWrapper>
+                <div className="album">
+                  <p className="on">on</p>
+                  <p>{shortenString(item.track.album.name, 25)}</p>
+                </div>
+              </BodyCard>
+            );
+          })}
+        </Body>
+        {/*</BodyWrapper>*/}
       </Wrapper>
     );
   }
@@ -106,7 +106,7 @@ export const RecentlyPlayedCard: FC<Props> = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 20px 20px 20px 0;
+  margin: 20px 0;
 
   .emptyMessage {
     display: flex;
@@ -127,19 +127,29 @@ const Wrapper = styled.div`
       margin: 0 0 3px 5px;
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    margin: 0;
+  }
 `;
 
-const BodyWrapper = styled.div`
-  display: flex;
-  padding: 0 10px;
-  border-radius: 5px;
-`;
+// const BodyWrapper = styled.div`
+//   display: flex;
+//   width: 100%;
+//   padding: 0 10px;
+//   border-radius: 5px;
+//
+//   @media only screen and (max-width: 900px) {
+//     padding: 0;
+//   }
+// `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-  width: 100%;
+  width: auto;
+  padding: 0 13px;
 
   > div:nth-child(odd) {
     background-color: #080808;
@@ -194,6 +204,7 @@ const Body = styled.div`
 
 const BodyCard = styled.div`
   display: flex;
+  width: auto;
   border-radius: 5px;
   padding: 8px 12px;
   box-shadow: 1px 1px 3px #000;
