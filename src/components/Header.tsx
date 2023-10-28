@@ -20,9 +20,9 @@ export const Header: FC<Props> = (props) => {
 
         <div className="loggedIn">
           <img
-            className="spotifyLogo"
-            src="/spotify.svg"
-            alt="spotify logo"
+            className="userIcon"
+            src="/user-grey.svg"
+            alt="user icon"
             width={20}
             height={20}
           />
@@ -37,7 +37,7 @@ export const Header: FC<Props> = (props) => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
-  
+
   @media only screen and (max-width: 900px) {
   }
 `;
