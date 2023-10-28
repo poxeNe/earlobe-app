@@ -18,13 +18,21 @@ export const ProfilePage: FC<Props> = (props) => {
       <Header userId={props.profile.id} />
 
       <BodyWrapper className="bodyWrapper">
-        <UserCard profile={props.profile} />
+        <div className="userCard1">
+          <UserCard profile={props.profile} />
+        </div>
 
         <div className="right">
           <CurrentlyPlayingCard />
 
           <RecentlyPlayedCard />
+
+          <div className="userCard2">
+            <UserCard profile={props.profile} />
+          </div>
         </div>
+
+
       </BodyWrapper>
 
       <Footer />
@@ -33,11 +41,12 @@ export const ProfilePage: FC<Props> = (props) => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
+  //display: flex;
   //align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  //justify-content: space-between;
+  //flex-direction: column;
   width: 900px;
+  height: 100%;
 
   @media only screen and (max-width: 900px) {
     position: relative;
@@ -51,6 +60,10 @@ const BodyWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  
+  .userCard2 {
+    display: none;
+  }
 
   //align-items: center;
   //height: calc(100% - 70px);
@@ -68,9 +81,24 @@ const BodyWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    
+    .userCard1 {
+      display: none;
+    }
+    
     .right {
       padding-top: 0;
+      
+      
+
+      .userCard2 {
+        display: block;
+
+        > div {
+          margin: 17px 0 0 0;
+          padding: 0;
+        }
+      }
     }
   }
 `;
