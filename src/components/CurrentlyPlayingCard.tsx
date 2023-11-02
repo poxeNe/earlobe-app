@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import { fetchCurrentlyPlaying } from "../_funcs/user/fetchCurrentlyPlaying.ts";
 import { Artist, CurrentlyPlaying } from "../types/types.ts";
 import { Loading } from "./Loading.tsx";
 import { shortenString } from "../_funcs/util/shortenString.ts";
+import styled from "@emotion/styled";
 
 type Props = {
   // currentlyPlaying: CurrentlyPlaying;
