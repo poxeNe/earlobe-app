@@ -79,7 +79,10 @@ export const RecentlyPlayedCard: FC<Props> = () => {
         <Body>
           {recentlyPlayed?.items.map((item: PlayHistory, i) => {
             return (
-              <BodyCard className={`bodyCard${i}`} key={item.track.name + String(i)}>
+              <BodyCard
+                className={`bodyCard${i}`}
+                key={item.track.name + String(i)}
+              >
                 <div className="title">
                   <p>{shortenString(item.track.name, 30)}</p>
                 </div>
@@ -132,17 +135,6 @@ const Wrapper = styled.div`
     margin: 0;
   }
 `;
-
-// const BodyWrapper = styled.div`
-//   display: flex;
-//   width: 100%;
-//   padding: 0 10px;
-//   border-radius: 5px;
-//
-//   @media only screen and (max-width: 900px) {
-//     padding: 0;
-//   }
-// `;
 
 const Body = styled.div`
   display: flex;
@@ -236,6 +228,20 @@ const BodyCard = styled.div`
       font-weight: 700;
       color: var(--accent-light);
       //transform: rotate(5deg);
+    }
+  }
+
+  @media only screen and (max-width: 490px) {
+    flex-direction: column;
+
+    .artist,
+    .album {
+      line-height: 18px;
+
+      .by,
+      .on {
+        margin: 0;
+      }
     }
   }
 `;
