@@ -11,8 +11,22 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
-  email      String   @unique
-  name       String
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now()) @updatedAt
+  email        String   @unique
+  display_name String
+  total_xp     Int
+  songs_played Int
+  quests       Quest[]
+}
+
+model Quest {
+  id           String    @id @default(uuid())
+  User         User?     @relation(fields: [user_id], references: [id])
+  user_id      Int?
+  created_at   DateTime  @default(now())
+  completed_at DateTime?
+  is_complete  Boolean
+  objective    String
 }

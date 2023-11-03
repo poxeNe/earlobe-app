@@ -7,6 +7,8 @@ type Props = {
 };
 
 export const UserCard: FC<Props> = (props) => {
+  const userAppProfile = getUserAppProfile(props.profile.email);
+
   return (
     <Wrapper>
       <div className="heading">
@@ -17,10 +19,14 @@ export const UserCard: FC<Props> = (props) => {
         {props.profile ? (
           <BodyCard>
             <ProfileDataWrapper>
-              <Header>name</Header>
+              <Header>
+                <p>name</p>
+              </Header>
               <p style={{ margin: "5px 0 10px 0" }}>{props.profile.id}</p>
 
-              <Header>stats</Header>
+              <Header>
+                <p>stats</p>
+              </Header>
               {/*<p>email: {props.profile.email}</p>*/}
               <p style={{ margin: "5px 0 10px 0" }}>songs listened to:</p>
             </ProfileDataWrapper>
@@ -83,16 +89,18 @@ const ProfileDataWrapper = styled.div`
   }
 `;
 
-const Header = styled.h3`
+const Header = styled.div`
   display: flex;
   align-items: start;
   justify-content: start;
   width: 100%;
-  padding: 0 0 0 5px;
-  //margin: 0 auto;
-  color: var(--main-copy);
-  font-size: 18px;
-  font-weight: 300;
-  letter-spacing: 4px;
   border-bottom: 1px solid var(--rule-grey);
+
+  p {
+    color: var(--main-copy);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    padding: 0 0 0 5px;
+  }
 `;

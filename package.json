@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/css": "^11.11.2",
     "@emotion/styled": "^11.11.0",
+    "@prisma/client": "^5.5.2",
     "date-fns": "^2.30.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
